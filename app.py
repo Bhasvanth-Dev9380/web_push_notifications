@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import requests
-from flask_cors import CORS  # Corrected import
+import os
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS globally
+CORS(app)
 
-SLACK_TOKEN = "xoxb-8922845013651-8929130147797-0F5ftzQSm3OrAoiJibEzLpvi"
+SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
 CHANNEL = "#team-proactive"
 
 @app.route('/send-slack-message', methods=['POST'])
